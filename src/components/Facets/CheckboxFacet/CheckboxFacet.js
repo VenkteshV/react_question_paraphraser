@@ -9,7 +9,7 @@ export default function CheckboxFacet(props) {
 
     let [isExpanded, setIsExpanded] = useState(false);
 
-    const checkboxes = props.values.map(facetValue => {
+    const checkboxes = props.map(facetValue => {
 
         let isSelected = props.selectedFacets.some(facet => facet.value === facetValue.value);
         

@@ -1,35 +1,13 @@
-const { SearchClient, AzureKeyCredential } = require("@azure/search-documents");
-
-const indexName = process.env["SearchIndexName"];
-const apiKey = process.env["SearchApiKey"];
-const searchServiceName = process.env["SearchServiceName"];
+// const { SearchClient, AzureKeyCredential } = require("@azure/search-documents");
+import axios from "axios";
+// const indexName = process.env["SearchIndexName"];
+// const apiKey = process.env["SearchApiKey"];
+const paraphraseServiceName = process.env["ParaphraserService"];
 
 // Create a SearchClient to send queries
-const client = new SearchClient(
-    `https://` + searchServiceName + `.search.windows.net/`,
-    indexName,
-    new AzureKeyCredential(apiKey)
-);
+const client = `http://` + paraphraseServiceName + '/paraphrase'
 
-// creates filters in odata syntax
-const createFilterExpression = (filterList, facets) => {
-    let i = 0;
-    let filterExpressions = [];
 
-    while (i < filterList.length) {        
-        let field = filterList[i].field;
-        let value = filterList[i].value;
-
-        if (facets[field] === 'array') {
-            filterExpressions.push(`${field}/any(t: search.in(t, '${value}', ','))`);
-        } else {
-            filterExpressions.push(`${field} eq '${value}'`);
-        }
-        i += 1;
-    }
-
-    return filterExpressions.join(' and ');
-}
 
 // reads in facets and gets type
 // array facets should include a * at the end 

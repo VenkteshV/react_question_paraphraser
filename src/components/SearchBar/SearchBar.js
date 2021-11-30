@@ -84,7 +84,7 @@ export default function SearchBar(props) {
                         onBlur={() => setShowSuggestions(false)}
                         onClick={() => setShowSuggestions(true)}>
                     </input>
-                    {suggestionDiv}
+                    {/* {suggestionDiv} */}
                 </div>
                 <div className="input-group-btn">
                     <button className="btn btn-primary rounded-0" type="submit" onClick={onSearchHandler}>

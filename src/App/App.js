@@ -43,7 +43,7 @@ export default function App() {
   }, []);
 
   return (
-    <AuthContext.Provider value={user}>
+    // <AuthContext.Provider value={user}>
       <div className="container-fluid app">
         <AppHeader />
         <Router>
@@ -55,6 +55,6 @@ export default function App() {
         </Router>
         {/* <AppFooter /> */}
       </div>
-    </AuthContext.Provider>
+    // </AuthContext.Provider>
   );
 }

@@ -30,17 +30,13 @@ export default function Search() {
   useEffect(() => {
     setIsLoading(true);
     const body = {
-      q: q,
-      top: top,
-      skip: skip,
-      filters: filters
+      content: q
     };
 
-    axios.post( '/api/search', body)
+    axios.post( 'http://localhost:8000/paraphrase', {content:q}, {headers: { "Content-Type": "application/json" }})
         .then( response => {
-            setResults(response.data.results);
-            setFacets(response.data.facets);
-            setResultCount(response.data.count);
+            setResults(response);
+            setResultCount(response.data.length);
             setIsLoading(false);
         } )
         .catch(error => {
@@ -75,7 +71,7 @@ export default function Search() {
   } else {
     body = (
       <div className="col-md-9">
-        <Results documents={results} top={top} skip={skip} count={resultCount}></Results>
+        <Results documents={results.data} top={top} skip={skip} count={resultCount}></Results>
         <Pager className="pager-style" currentPage={currentPage} resultCount={resultCount} resultsPerPage={resultsPerPage} setCurrentPage={updatePagination}></Pager>
       </div>
     )
