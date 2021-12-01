@@ -33,7 +33,7 @@ export default function Search() {
       content: q
     };
 
-    axios.post( 'http://localhost:8000/paraphrase', {content:q}, {headers: { "Content-Type": "application/json" }})
+    axios.post( 'http://0.0.0.0:8000/paraphrase', {content:q}, {headers: { "Content-Type": "application/json" }})
         .then( response => {
             setResults(response);
             setResultCount(response.data.length);
